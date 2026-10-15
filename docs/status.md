@@ -704,6 +704,25 @@ v0.0.11 artifacts, including the original CI failures and remaining acceptance l
 
 ## In flight
 
+- **Claude Agent SDK ([fork PR #1](https://github.com/snowopsdev/modex/pull/1)).** Claude
+  turns use pinned `@anthropic-ai/claude-agent-sdk` (`query()`) with the user's installed
+  `claude`, preserving CLI login, CLAUDE.md, hooks, MCP servers, skills and background
+  work. Stop allows a graceful interrupt before signals and waits for process close.
+  Deferred launches inherit the SDK's cancellation signal so they cannot outlive Stop.
+  Withdrawn approvals dismiss their cards and cancel rule evaluation. CLI failures retain
+  stderr and exit codes. Offline tests exercise the real SDK handshake, permissions,
+  cancellation and shutdown. Packaged builds omit bundled native CLI packages. The
+  [review evidence](reviews/2026-10-15-claude-sdk-review.md) records checks and the installed
+  Claude smoke limit; this migration has not landed on main.
+
+- **Desktop v0.1.0 preparation.** The first minor release ships everything under "On main,
+  unreleased": Markdown notes in workspaces and projects with per-project agent scope, files in
+  notes, Images and native Plugins (Val's decision), Analytics and thread archiving. It is the
+  first published-to-published automatic update, from v0.0.12. A signed rehearsal and the full
+  test suite passed locally. Notarization, the packaged E2E on the signed tag, the hosted native
+  updater scenarios, independent download checks and publication remain.
+  [Candidate review](reviews/2026-10-15-v0.1.0-release-review.md).
+
 - **Verified multiplatform release candidates.** The release workflow now joins native
   Windows/Linux checks with signed macOS acceptance, binds installer bytes and receipts
   to the exact tag/source/run, and prepares a draft with five installers, checksums and
